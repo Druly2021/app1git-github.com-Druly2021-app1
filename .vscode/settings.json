@@ -1,8 +1,6 @@
 {
     "git.autoRepositoryDetection": "subFolders",
     "breadcrumbs.enabled": true,
-
-    "debug.autoExpandLazyVariables": true,
     "debug.inlineValues": "on",
 
     "python.languageServer": "Pylance",
