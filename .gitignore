@@ -9,6 +9,7 @@ __pycache__
 .vscode
 .idea
 
+
 # django stuff
 
 db.sqlite3
