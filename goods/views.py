@@ -8,7 +8,7 @@ def catalog(request, category_slug):
     
     page = request.GET.get('page', 1)
     on_sale = request.GET.get('on_sale', None)
-    order_buy = request.GET.get('order_buy', None)
+    order_by = request.GET.get('order_by', None)
     
     if category_slug == 'all':
         goods = Products.objects.all()
@@ -17,8 +17,8 @@ def catalog(request, category_slug):
 
     if on_sale:
         goods = goods.filter(discount__gt=0)
-    if order_buy and order_buy != "default":
-        goods = goods.order_by(order_buy)
+    if order_by and order_by != "default":
+        goods = goods.order_by(order_by)
     
     paginator = Paginator(goods, 3)
     current_page = paginator.page(int(page))
