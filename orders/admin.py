@@ -45,15 +45,6 @@ class OrderTabulareAdmin(admin.TabularInline):
     extra = 0
 
 
-
-
-
-
-
-
-
-
-
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = (
