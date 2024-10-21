@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db import transaction
 from django.forms import ValidationError
@@ -7,7 +8,7 @@ from carts.models import Cart
 from orders.forms import CreateOrderForm
 from orders.models import Order, OrderItem
 
-
+@login_required
 def create_order(request):
     if request.method == "POST":
         form = CreateOrderForm(data=request.POST)
@@ -22,7 +23,7 @@ def create_order(request):
                         order = Order.objects.create(
                             user=user,
                             phone_number=form.cleaned_data['phone_number'],
-                            # requires_delivery=form.cleaned_data['requires_delivery'],
+                            requires_delivery=form.cleaned_data['requires_delivery'],
                             delivery_address=form.cleaned_data['delivery_address'],
                             payment_on_get=form.cleaned_data['payment_on_get'],
                         )
@@ -65,5 +66,6 @@ def create_order(request):
     context = {
         'title': 'Home - Оформление заказа',
         'form': form,
+        'order': True,
     }
     return render(request, 'orders/create_order.html', context=context)
