@@ -24,7 +24,7 @@ def create_order(request):
                             user=user,
                             phone_number=form.cleaned_data['phone_number'],
                             requires_delivery=form.cleaned_data['requires_delivery'],
-                            delivery_address=form.cleaned_data['delivery_address'],
+                            # delivery_address=form.cleaned_data['delivery_address'],
                             payment_on_get=form.cleaned_data['payment_on_get'],
                         )
                         # Создать заказанные товары
@@ -54,7 +54,7 @@ def create_order(request):
                         return redirect('user:profile')
             except ValidationError as e:
                 messages.success(request, str(e))
-                return redirect('cart:order')
+                return redirect('orders:create_order')
     else:
         initial = {
             'first_name': request.user.first_name,

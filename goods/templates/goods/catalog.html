@@ -11,11 +11,11 @@
 
 {% block content %}
 <div class="row">
-    <!-- Форма фильтров -->
+     <!-- Форма фильтров -->
     <div class="dropdown mb-2">
         <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Фильтры
+            Фильтры 
         </button>
 
         <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %}{% endif %}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
@@ -47,7 +47,7 @@
                 <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price" 
                 {% if request.GET.order_by == '-price' %}checked{% endif %}>
                 <label class="form-check-label" for="flexRadioDefault3">
-                    От дорогих к дешевым
+                    От дорогих к дешевым 
                 </label>
             </div>
             <button type="submit" class="btn btn-primary mx-3 mt-3">Применить</button>
@@ -116,37 +116,37 @@
 
 
 </div>
-<!-- Пагинация -->
-{% if goods %}
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center my-4">
-            <div class="custom-shadow d-flex">
-                <li class="page-item {% if not goods.has_previous %}disabled{% endif %}">
-                <a class="page-link" href="{% if goods.has_previous %}?{% change_params page=goods.previous_page_number %}{% else %}#{% endif %}">Назад</a>
-                </li>
-
-                {% for page in goods.paginator.page_range %}
-                {% if page >= goods.number|add:-2 and page <= goods.number|add:2 %}
-                    <li class="page-item {% if goods.number == page %}active{% endif %}">
-                        <a class="page-link" href="?{% change_params page=page %}">{{ page }}</a>
+    <!-- Пагинация -->
+    {% if goods %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center my-4">
+                <div class="custom-shadow d-flex">
+                    <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                    <a class="page-link" href="{% if page_obj.has_previous %}?{% change_params page=page_obj.previous_page_number %}{% else %}#{% endif %}">Назад</a>
                     </li>
-                {% endif %}
-                {% endfor %}
 
-                <li class="page-item {% if not goods.has_next %}disabled{% endif %}">
-                    <a class="page-link" href="{% if goods.has_next %}?{% change_params page=goods.next_page_number %}{% else %}#{% endif %}">Следующая</a>
-                </li>
-            </div>
-        </ul>
-    </nav>
-{% endif %}
+                    {% for page in page_obj.paginator.page_range %}
+                    {% if page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
+                        <li class="page-item {% if page_obj.number == page %}active{% endif %}">
+                            <a class="page-link" href="?{% change_params page=page %}">{{ page }}</a>
+                        </li>
+                    {% endif %}
+                    {% endfor %}
+
+                    <li class="page-item {% if not goods.has_next %}disabled{% endif %}">
+                        <a class="page-link" href="{% if goods.has_next %}?{% change_params page=goods.next_page_number %}{% else %}#{% endif %}">Следующая</a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    {% endif %}
 {% endblock %}
 
 
 {% block footer %}
-<footer class="py-4 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Furniturestore 2024</p>
-    </div>
-</footer>
+    <footer class="py-4 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Furniturestore 2024</p>
+        </div>
+    </footer>
 {% endblock %}
