@@ -2,7 +2,8 @@
 
 venv/
 .pylintrc
-__pycache__
+__pycache__/
+cache/
 
 # ide stuff
 

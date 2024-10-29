@@ -1,18 +1,16 @@
-from multiprocessing import context
-import re
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.db import transaction
 from django.forms import ValidationError
 from django.shortcuts import redirect, render
-
-from carts.models import Cart
-from orders.forms import CreateOrderForm
-from orders.models import Order, OrderItem
-
 from django.urls import reverse_lazy
 from django.views.generic import FormView
+
+from carts.models import Cart
+
+from orders.forms import CreateOrderForm
+from orders.models import Order, OrderItem
 
 
 class CreateOrderView(LoginRequiredMixin, FormView):
@@ -79,7 +77,7 @@ class CreateOrderView(LoginRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Оформление заказа"
-        context['orders'] = True
+        context['order'] = True
         return context
 
 
