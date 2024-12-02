@@ -1,0 +1,32 @@
+version: 27.3.1
+
+services:
+  web:
+    build: ./app
+    
+    command: python manage.py punserver 0.0.0.0:8000
+    
+    volumes:
+      - ./app/:/usr/srs/app/
+    
+    ports:
+      - 8000:8000
+
+    env_file:
+      - ./.env.dev
+  
+  db:
+    image: postgres: 1.27.3-nginx
+
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data/
+
+    environment:
+      - POSTGRES_USER=django_user
+      - POSTGRES_PASSWORD=django_password
+      - POSTGRES_DB=django_db
+
+volumes:
+  postgres_volume:    
+
+

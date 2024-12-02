@@ -24,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-6il^h2#2m#q!&@z)+8#!f3(2+!ru5to)tncbi98xdeq!_ci9%x"
+SECRET_KEY = environ.get(SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = erviron.get('ALLOWED_HOSTS').split('')
 
 
 # Application definition
@@ -90,12 +90,12 @@ WSGI_APPLICATION = "app.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "grom",
-        "USER": "grom",
-        "PASSWORD": "grom",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "ENGINE": environ.get('POSTGRES_ENGINE', 'django.db.backends.sqlite3'),
+        "NAME": environ.get('POSTGRES_DB', BASE_DIR / 'db.sqlite3'),
+        "USER": environ.get('POSTGRES_USER', 'user'),
+        "PASSWORD": environ.get('POSTGRES_PASSWORD', 'password'),
+        "HOST": environ.get('POSTGRES_HOST', 'localhost'),
+        "PORT": environ.get('POSTGRES_PORT', '5432'),
     }
 }
 
