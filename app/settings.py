@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from re import L
 
 from django.http import HttpResponseNotFound
 
@@ -24,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = environ.get(SECRET_KEY)
+SECRET_KEY =  'django-insecure-ld)8k$gfoow^#9-6mm@palg6l9d)&l!5ng#m2@=msxhq353g#2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(environ.get('DEBUG', default=0))
+DEBUG = True
 
-ALLOWED_HOSTS = erviron.get('ALLOWED_HOSTS').split('')
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,12 +89,12 @@ WSGI_APPLICATION = "app.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": environ.get('POSTGRES_ENGINE', 'django.db.backends.sqlite3'),
-        "NAME": environ.get('POSTGRES_DB', BASE_DIR / 'db.sqlite3'),
-        "USER": environ.get('POSTGRES_USER', 'user'),
-        "PASSWORD": environ.get('POSTGRES_PASSWORD', 'password'),
-        "HOST": environ.get('POSTGRES_HOST', 'localhost'),
-        "PORT": environ.get('POSTGRES_PORT', '5432'),
+        "ENGINE": 'django.db.backends.postgresql',
+        "NAME": 'grom',
+        "USER": 'grom',
+        "PASSWORD": 'grom',
+        "HOST": 'localhost',
+        "PORT": '5432',
     }
 }
 
