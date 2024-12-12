@@ -16,7 +16,7 @@ services:
       - ./.env.dev
   
   db:
-    image: postgres: 1.27.3-nginx
+    image: postgres 1.27.3-nginx
 
     volumes:
       - postgres_volume:/var/lib/postgresql/data/
