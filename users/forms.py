@@ -4,28 +4,28 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 from users.models import User
 
 
-
 class UserLoginForm(AuthenticationForm):
-    
+
     class Meta:
         model = User
         fields = ['username', 'password']
-    
+
     username = forms.CharField()
     password = forms.CharField()
 
-#     username = forms.CharField(
-#         label = 'Имя',
-#         widget=forms.TextInput(attrs={"autofocus": True,
-#                                       'class': 'form-control',
-#                                       'placeholder': 'Введите ваше имя пользователя'})
-#                                       )
-#     password = forms.CharField(
-#         label = 'Пароль',
-#         widget=forms.PasswordInput(attrs={"autocomplete": "current-password",
-#                                       'class': 'form-control',
-#                                       'placeholder': 'Введите ваш пароль'}),
-# )
+    # username = forms.CharField(
+    #     label = 'Имя',
+    #     widget=forms.TextInput(attrs={"autofocus": True,
+    #                                   'class': 'form-control',
+    #                                   'placeholder': 'Введите ваше имя пользователя'})
+    # )
+    # password = forms.CharField(
+    #     label = 'Пароль',
+    #     widget=forms.PasswordInput(attrs={"autocomplete": "current-password",
+    #                                       'class': 'form-control',
+    #                                       'placeholder': 'Введите ваш пароль'})
+    # )
+
 class UserRegistrationForm(UserCreationForm):
 
     class Meta:
@@ -38,7 +38,7 @@ class UserRegistrationForm(UserCreationForm):
             "password1",
             "password2",
         )
-
+    
     first_name = forms.CharField()
     last_name = forms.CharField()
     username = forms.CharField()
@@ -46,7 +46,7 @@ class UserRegistrationForm(UserCreationForm):
     password1 = forms.CharField()
     password2 = forms.CharField()
 
-    
+
     # first_name = forms.CharField(
     #     widget=forms.TextInput(
     #         attrs={
@@ -91,11 +91,11 @@ class UserRegistrationForm(UserCreationForm):
     #     widget=forms.PasswordInput(
     #         attrs={
     #             "class": "form-control",
-    #             "placeholder": "Подтвердите ваш пароль",
+    #             "placeholder": "Поддтвердите ваш пароль",
     #         }
     #     )
     # )
-    
+
 class ProfileForm(UserChangeForm):
     class Meta:
         model = User
@@ -105,12 +105,13 @@ class ProfileForm(UserChangeForm):
             "last_name",
             "username",
             "email",)
-            
+
     image = forms.ImageField(required=False)
     first_name = forms.CharField()
     last_name = forms.CharField()
     username = forms.CharField()
     email = forms.CharField()
+
 
 
     # image = forms.ImageField(
@@ -120,7 +121,7 @@ class ProfileForm(UserChangeForm):
     #     widget=forms.TextInput(
     #         attrs={
     #             "class": "form-control",
-    #             "placeholder": "Введите ваше имя"
+    #             "placeholder": "Введите ваше имя",
     #         }
     #     )
     # )
@@ -145,6 +146,7 @@ class ProfileForm(UserChangeForm):
     #         attrs={
     #             "class": "form-control",
     #             "placeholder": "Введите ваш email *youremail@example.com",
+    #             # 'readonly': True,
     #         }
-    #     )
+    #     ),
     # )
